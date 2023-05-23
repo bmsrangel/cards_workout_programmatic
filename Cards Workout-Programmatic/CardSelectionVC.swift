@@ -65,6 +65,8 @@ class CardSelectionVC: UIViewController {
     
     func configureRulesButton() {
         view.addSubview(rulesButton)
+        // This is how actions are defined
+        rulesButton.addTarget(self, action: #selector(presentRulesVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             rulesButton.widthAnchor.constraint(equalToConstant: 115),
@@ -72,5 +74,12 @@ class CardSelectionVC: UIViewController {
             rulesButton.trailingAnchor.constraint(equalTo: stopButton.trailingAnchor),
             rulesButton.topAnchor.constraint(equalTo: stopButton.bottomAnchor, constant: 20),
         ])
+    }
+    
+    @objc func presentRulesVC() {
+        // If data should be sent to the next screen, its controller could be instantiated in a variable,
+        // the corresponding attribute could be set and the variable would be passed as argument for "present"
+        // Additionally, "present" is being used because "Navigation Controller" is not in use for this app
+        present(RulesVC(), animated: true)
     }
 }
